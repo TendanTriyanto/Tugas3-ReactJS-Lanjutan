@@ -51,12 +51,13 @@ export default function AuthorsAdmin() {
 
   const handleDelete = async (id) => {
     if (confirm('Apakah Anda yakin ingin menghapus author ini?')) {
-      try {
-        await deleteAuthor(id);
-        fetchAuthors();
-      } catch (error) {
-        console.error("Gagal menghapus author:", error);
-      }
+        try {
+            await deleteAuthor(id);
+            const updated = await getAuthors();
+            setAuthors(updated);
+        } catch (error) {
+            console.error("Gagal menghapus author:", error);
+        }
     }
   };
 

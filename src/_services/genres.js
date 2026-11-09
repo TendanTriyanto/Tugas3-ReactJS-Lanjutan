@@ -5,6 +5,11 @@ export const getGenres = async () => {
     return data ? JSON.parse(data) : [];
 };
 
+export const showGenre = async (id) => {
+    const genres = await getGenres();
+    return genres.find(g => g.id == id || g._id == id) || null;
+};
+
 export const createGenre = async (data) => {
     const genres = await getGenres();
     const newGenre = { id: Date.now(), ...data };
@@ -15,14 +20,14 @@ export const createGenre = async (data) => {
 
 export const updateGenre = async (id, data) => {
     let genres = await getGenres();
-    genres = genres.map(g => (g.id === id || g._id === id ? { ...g, ...data } : g));
+    genres = genres.map(g => (g.id == id || g._id == id ? { ...g, ...data } : g));
     localStorage.setItem(STORAGE_KEY, JSON.stringify(genres));
     return data;
 };
 
 export const deleteGenre = async (id) => {
     let genres = await getGenres();
-    genres = genres.filter(g => g.id !== id && g._id !== id);
+    genres = genres.filter(g => g.id != id && g._id != id);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(genres));
     return { success: true };
 };

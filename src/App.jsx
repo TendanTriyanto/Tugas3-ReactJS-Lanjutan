@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import GenresAdmin from "./pages/admin/genres";
 import AuthorsAdmin from "./pages/admin/authors";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
 
 export default function App() {
   return (
@@ -16,6 +18,13 @@ export default function App() {
           <Link to="/admin/authors" className="hover:bg-slate-700 p-2 rounded">
             Manajemen Author
           </Link>
+          <div className="border-t border-slate-700 my-2"></div>
+          <Link to="/login" className="hover:bg-indigo-600 p-2 rounded bg-indigo-500 text-center font-medium">
+            Login
+          </Link>
+          <Link to="/register" className="hover:bg-slate-700 p-2 rounded text-center">
+            Register
+          </Link>
         </aside>
 
         {/* Konten Utama */}
@@ -23,6 +32,8 @@ export default function App() {
           <Routes>
             <Route path="/admin/genres" element={<GenresAdmin />} />
             <Route path="/admin/authors" element={<AuthorsAdmin />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
         </main>
       </div>
